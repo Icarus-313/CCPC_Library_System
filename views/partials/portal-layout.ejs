@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | CCPC Library</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">CC</div>
+        <div class="brand-text">
+          <strong>CCPC Library</strong>
+          <span>Student Portal</span>
+        </div>
+      </div>
+      <nav>
+        <a href="/portal" class="<%= active === 'portal-dashboard' ? 'active' : '' %>">Dashboard</a>
+        <a href="/portal/books" class="<%= active === 'portal-books' ? 'active' : '' %>">Browse Books</a>
+        <a href="/portal/my-loans" class="<%= active === 'portal-loans' ? 'active' : '' %>">My Loans</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="signed-in-as">Signed in as<br><strong><%= studentName %></strong></div>
+        <form method="POST" action="/auth/student/logout">
+          <button class="btn btn-outline btn-sm" type="submit" style="width:100%;">Log Out</button>
+        </form>
+      </div>
+    </aside>
+    <main class="content">
+      <%- body %>
+    </main>
+  </div>
+</body>
+</html>

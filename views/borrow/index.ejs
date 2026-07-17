@@ -1,0 +1,51 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Circulation</span>
+    <h1>Active Borrows</h1>
+  </div>
+  <a href="/borrow/issue" class="btn btn-brass">+ Issue a Book</a>
+</div>
+
+<% if (active.length === 0) { %>
+  <div class="empty-state">
+    <h3>No active loans</h3>
+    <p>Every book is on the shelf. Issue one from the button above.</p>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Student</th>
+        <th>Borrowed</th>
+        <th>Due</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% active.forEach(r => { %>
+        <tr>
+          <td><strong><%= r.book_title %></strong><br><span class="hint"><%= r.book_author %></span></td>
+          <td><%= r.student_name %><br><span class="hint"><%= r.roll_number %></span></td>
+          <td class="due-tag"><%= r.borrow_date %></td>
+          <td class="due-tag"><%= r.due_date %></td>
+          <td>
+            <% if (r.status === 'overdue') { %>
+              <span class="badge badge-danger">Overdue</span>
+            <% } else { %>
+              <span class="badge badge-ok">On Loan</span>
+            <% } %>
+          </td>
+          <td>
+            <form method="POST" action="/borrow/<%= r.id %>/return">
+              <button class="btn btn-outline btn-sm" type="submit">Mark Returned</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>

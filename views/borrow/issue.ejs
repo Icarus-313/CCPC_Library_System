@@ -1,0 +1,48 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Circulation</span>
+    <h1>Issue a Book</h1>
+  </div>
+</div>
+
+<div class="form-card">
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <% if (books.length === 0) { %>
+    <div class="alert alert-info">No books currently have available copies.</div>
+  <% } else if (students.length === 0) { %>
+    <div class="alert alert-info">No students registered yet. Add a student first.</div>
+  <% } else { %>
+  <form method="POST" action="/borrow/issue">
+    <div class="field">
+      <label>Book</label>
+      <select name="book_id" required>
+        <option value="">Select a book...</option>
+        <% books.forEach(b => { %>
+          <option value="<%= b.id %>"><%= b.title %> — <%= b.author %> (<%= b.available_copies %> available)</option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="field">
+      <label>Student</label>
+      <select name="student_id" required>
+        <option value="">Select a student...</option>
+        <% students.forEach(s => { %>
+          <option value="<%= s.id %>"><%= s.name %> — <%= s.roll_number %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="field">
+      <label>Loan Period (days)</label>
+      <input type="number" name="loan_days" value="14" min="1">
+      <p class="hint">Fine of ৳5/day applies automatically if returned late.</p>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Issue Book</button>
+      <a href="/borrow" class="btn btn-outline">Cancel</a>
+    </div>
+  </form>
+  <% } %>
+</div>

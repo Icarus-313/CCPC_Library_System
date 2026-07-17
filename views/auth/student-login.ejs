@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Login | CCPC Library</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-body">
+  <div class="auth-shell">
+    <div class="auth-card">
+      <span class="eyebrow">Student Access</span>
+      <h1>Student Login</h1>
+      <% if (error) { %><div class="alert alert-danger"><%= error %></div><% } %>
+      <form method="POST" action="/auth/student/login">
+        <div class="field">
+          <label>Roll Number or Email</label>
+          <input type="text" name="identifier" required autofocus>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" required>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-brass landing-btn" type="submit">Log In</button>
+        </div>
+      </form>
+      <p class="hint auth-links">
+        <a href="/">&larr; Back</a> &middot;
+        <a href="/auth/student/signup">Create an account</a> &middot;
+        <a href="/auth/admin/login">Admin login</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

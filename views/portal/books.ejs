@@ -1,0 +1,49 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Catalog</span>
+    <h1>Browse Books</h1>
+  </div>
+</div>
+
+<form class="search-bar" method="GET" action="/portal/books">
+  <input type="text" name="q" value="<%= search %>" placeholder="Search by title, author or category...">
+  <button class="btn btn-outline" type="submit">Search</button>
+  <% if (search) { %><a href="/portal/books" class="btn btn-outline">Clear</a><% } %>
+</form>
+
+<% if (books.length === 0) { %>
+  <div class="empty-state">
+    <h3>No books found</h3>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Title</th><th>Author</th><th>Category</th><th>Available</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% books.forEach(b => { %>
+        <tr>
+          <td><strong><%= b.title %></strong></td>
+          <td><%= b.author %></td>
+          <td><%= b.category || '—' %></td>
+          <td class="due-tag"><%= b.available_copies %> / <%= b.total_copies %></td>
+          <td>
+            <% if (myActiveBookIds.includes(b.id)) { %>
+              <span class="badge badge-muted">Already Borrowed</span>
+            <% } else if (myPendingBookIds.includes(b.id)) { %>
+              <span class="badge badge-warn">Requested</span>
+            <% } else if (b.available_copies < 1) { %>
+              <span class="badge badge-danger">Unavailable</span>
+            <% } else { %>
+              <form method="POST" action="/portal/books/<%= b.id %>/request">
+                <button class="btn btn-brass btn-sm" type="submit">Request</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>

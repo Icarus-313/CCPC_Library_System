@@ -1,0 +1,48 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow"><%= book ? 'Edit Entry' : 'New Entry' %></span>
+    <h1><%= title %></h1>
+  </div>
+</div>
+
+<div class="form-card">
+  <form method="POST" action="<%= book ? '/books/' + book.id + '?_method=PUT' : '/books' %>">
+    <div class="field">
+      <label>Title</label>
+      <input type="text" name="title" required value="<%= book ? book.title : '' %>">
+    </div>
+    <div class="field">
+      <label>Author</label>
+      <input type="text" name="author" required value="<%= book ? book.author : '' %>">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>ISBN</label>
+        <input type="text" name="isbn" value="<%= book && book.isbn ? book.isbn : '' %>">
+      </div>
+      <div class="field">
+        <label>Category</label>
+        <input type="text" name="category" value="<%= book && book.category ? book.category : '' %>" placeholder="e.g. Physics, Fiction">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Publisher</label>
+        <input type="text" name="publisher" value="<%= book && book.publisher ? book.publisher : '' %>">
+      </div>
+      <div class="field">
+        <label>Shelf Location</label>
+        <input type="text" name="shelf_location" value="<%= book && book.shelf_location ? book.shelf_location : '' %>" placeholder="e.g. Rack B-3">
+      </div>
+    </div>
+    <div class="field">
+      <label>Total Copies</label>
+      <input type="number" name="total_copies" min="1" required value="<%= book ? book.total_copies : 1 %>">
+      <% if (book) { %><p class="hint">Available copies adjust automatically based on active loans.</p><% } %>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit"><%= book ? 'Save Changes' : 'Add Book' %></button>
+      <a href="/books" class="btn btn-outline">Cancel</a>
+    </div>
+  </form>
+</div>

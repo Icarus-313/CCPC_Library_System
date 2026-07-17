@@ -1,0 +1,39 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow"><%= student ? 'Edit Entry' : 'New Entry' %></span>
+    <h1><%= title %></h1>
+  </div>
+</div>
+
+<div class="form-card">
+  <form method="POST" action="<%= student ? '/students/' + student.id + '?_method=PUT' : '/students' %>">
+    <div class="field">
+      <label>Full Name</label>
+      <input type="text" name="name" required value="<%= student ? student.name : '' %>">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Roll Number</label>
+        <input type="text" name="roll_number" required value="<%= student ? student.roll_number : '' %>">
+      </div>
+      <div class="field">
+        <label>Class / Section</label>
+        <input type="text" name="class_section" value="<%= student && student.class_section ? student.class_section : '' %>" placeholder="e.g. CSE-22">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Phone</label>
+        <input type="text" name="phone" value="<%= student && student.phone ? student.phone : '' %>">
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" value="<%= student && student.email ? student.email : '' %>">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit"><%= student ? 'Save Changes' : 'Add Student' %></button>
+      <a href="/students" class="btn btn-outline">Cancel</a>
+    </div>
+  </form>
+</div>

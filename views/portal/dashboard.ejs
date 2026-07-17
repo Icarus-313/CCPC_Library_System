@@ -1,0 +1,75 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Welcome back</span>
+    <h1><%= studentName %></h1>
+  </div>
+  <a href="/portal/books" class="btn btn-brass">Browse &amp; Request Books</a>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <span class="label">Active Loans</span>
+    <div class="value"><%= activeLoans.length %></div>
+  </div>
+  <div class="stat-card <%= requests.filter(r => r.status === 'pending').length > 0 ? 'accent' : '' %>">
+    <span class="label">Pending Requests</span>
+    <div class="value"><%= requests.filter(r => r.status === 'pending').length %></div>
+  </div>
+  <div class="stat-card <%= totalFines > 0 ? 'warn' : '' %>">
+    <span class="label">Fines Owed</span>
+    <div class="value">৳<%= totalFines %></div>
+  </div>
+</div>
+
+<div class="toolbar"><h2>Currently Borrowed</h2></div>
+<% if (activeLoans.length === 0) { %>
+  <div class="empty-state">
+    <h3>No active loans</h3>
+    <p>Browse the catalog to request a book.</p>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Book</th><th>Borrowed</th><th>Due</th><th>Status</th></tr></thead>
+    <tbody>
+      <% activeLoans.forEach(r => { %>
+        <tr>
+          <td><strong><%= r.book_title %></strong><br><span class="hint"><%= r.book_author %></span></td>
+          <td class="due-tag"><%= r.borrow_date %></td>
+          <td class="due-tag"><%= r.due_date %></td>
+          <td>
+            <% if (r.status === 'overdue') { %><span class="badge badge-danger">Overdue</span>
+            <% } else { %><span class="badge badge-ok">On Loan</span><% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>
+
+<div class="toolbar" style="margin-top:28px;"><h2>My Requests</h2></div>
+<% if (requests.length === 0) { %>
+  <div class="empty-state">
+    <h3>No requests yet</h3>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Book</th><th>Requested</th><th>Status</th></tr></thead>
+    <tbody>
+      <% requests.forEach(r => { %>
+        <tr>
+          <td><%= r.book_title %></td>
+          <td class="due-tag"><%= r.requested_at %></td>
+          <td>
+            <% if (r.status === 'pending') { %><span class="badge badge-warn">Pending</span>
+            <% } else if (r.status === 'approved') { %><span class="badge badge-ok">Approved</span>
+            <% } else { %><span class="badge badge-danger">Rejected</span><% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>

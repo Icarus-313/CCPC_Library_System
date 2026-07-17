@@ -1,0 +1,43 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Circulation</span>
+    <h1>Borrow Requests</h1>
+  </div>
+</div>
+
+<% if (errorMsg) { %><div class="alert alert-danger"><%= errorMsg %></div><% } %>
+
+<% if (pending.length === 0) { %>
+  <div class="empty-state">
+    <h3>No pending requests</h3>
+    <p>Student self-service requests will appear here for approval.</p>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Book</th><th>Student</th><th>Requested</th><th>Copies Available</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% pending.forEach(r => { %>
+        <tr>
+          <td><strong><%= r.book_title %></strong><br><span class="hint"><%= r.book_author %></span></td>
+          <td><%= r.student_name %><br><span class="hint"><%= r.roll_number %></span></td>
+          <td class="due-tag"><%= r.requested_at %></td>
+          <td class="due-tag"><%= r.available_copies %></td>
+          <td>
+            <div class="row-actions">
+              <form method="POST" action="/borrow/requests/<%= r.id %>/approve">
+                <button class="btn btn-primary btn-sm" type="submit">Approve</button>
+              </form>
+              <form method="POST" action="/borrow/requests/<%= r.id %>/reject">
+                <button class="btn btn-danger btn-sm" type="submit">Reject</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Sign Up | CCPC Library</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-body">
+  <div class="auth-shell">
+    <div class="auth-card">
+      <span class="eyebrow">New Account</span>
+      <h1>Student Sign Up</h1>
+      <% if (error) { %><div class="alert alert-danger"><%= error %></div><% } %>
+      <form method="POST" action="/auth/student/signup">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="name" required autofocus>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Roll Number</label>
+            <input type="text" name="roll_number" required>
+          </div>
+          <div class="field">
+            <label>Class / Section</label>
+            <input type="text" name="class_section" placeholder="e.g. CSE-22">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Email (optional)</label>
+            <input type="email" name="email">
+          </div>
+          <div class="field">
+            <label>Phone (optional)</label>
+            <input type="text" name="phone">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" required minlength="6">
+          </div>
+          <div class="field">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" required minlength="6">
+          </div>
+        </div>
+        <p class="hint" style="margin-bottom:16px;">If the admin already added your roll number to the roster, signing up will link this password to that record.</p>
+        <div class="form-actions">
+          <button class="btn btn-brass landing-btn" type="submit">Create Account</button>
+        </div>
+      </form>
+      <p class="hint auth-links"><a href="/">&larr; Back</a> &middot; <a href="/auth/student/login">Already have an account? Log in</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">History</span>
+    <h1>My Borrowing History</h1>
+  </div>
+</div>
+
+<% if (records.length === 0) { %>
+  <div class="empty-state">
+    <h3>No records yet</h3>
+    <p>Once a request is approved, it'll show up here.</p>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Book</th><th>Borrowed</th><th>Due</th><th>Returned</th><th>Status</th><th>Fine</th></tr>
+    </thead>
+    <tbody>
+      <% records.forEach(r => { %>
+        <tr>
+          <td><strong><%= r.book_title %></strong></td>
+          <td class="due-tag"><%= r.borrow_date %></td>
+          <td class="due-tag"><%= r.due_date %></td>
+          <td class="due-tag"><%= r.return_date || '—' %></td>
+          <td>
+            <% if (r.status === 'returned') { %><span class="badge badge-muted">Returned</span>
+            <% } else if (r.status === 'overdue') { %><span class="badge badge-danger">Overdue</span>
+            <% } else { %><span class="badge badge-ok">On Loan</span><% } %>
+          </td>
+          <td><%= r.fine_amount > 0 ? '৳' + r.fine_amount : '—' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>

@@ -1,0 +1,62 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Catalog</span>
+    <h1>Books</h1>
+  </div>
+  <a href="/books/new" class="btn btn-brass">+ Add Book</a>
+</div>
+
+<form class="search-bar" method="GET" action="/books">
+  <input type="text" name="q" value="<%= search %>" placeholder="Search by title, author, ISBN or category...">
+  <button class="btn btn-outline" type="submit">Search</button>
+  <% if (search) { %><a href="/books" class="btn btn-outline">Clear</a><% } %>
+</form>
+
+<% if (books.length === 0) { %>
+  <div class="empty-state">
+    <h3>No books found</h3>
+    <p>Try a different search, or add a new title to the catalog.</p>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Shelf</th>
+        <th>Copies</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.forEach(book => { %>
+        <tr>
+          <td><strong><%= book.title %></strong><br><span class="hint"><%= book.isbn || '' %></span></td>
+          <td><%= book.author %></td>
+          <td><%= book.category || '—' %></td>
+          <td><%= book.shelf_location || '—' %></td>
+          <td class="due-tag"><%= book.available_copies %> / <%= book.total_copies %></td>
+          <td>
+            <% if (book.available_copies > 0) { %>
+              <span class="badge badge-ok">Available</span>
+            <% } else { %>
+              <span class="badge badge-danger">All Borrowed</span>
+            <% } %>
+          </td>
+          <td>
+            <div class="row-actions">
+              <a href="/books/<%= book.id %>/edit" class="btn btn-outline btn-sm">Edit</a>
+              <form method="POST" action="/books/<%= book.id %>?_method=DELETE" onsubmit="return confirm('Delete this book?');">
+                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>

@@ -1,0 +1,54 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Members</span>
+    <h1>Students</h1>
+  </div>
+  <a href="/students/new" class="btn btn-brass">+ Add Student</a>
+</div>
+
+<form class="search-bar" method="GET" action="/students">
+  <input type="text" name="q" value="<%= search %>" placeholder="Search by name, roll number or class...">
+  <button class="btn btn-outline" type="submit">Search</button>
+  <% if (search) { %><a href="/students" class="btn btn-outline">Clear</a><% } %>
+</form>
+
+<% if (students.length === 0) { %>
+  <div class="empty-state">
+    <h3>No students found</h3>
+    <p>Add a student to start issuing books to them.</p>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Roll Number</th>
+        <th>Class / Section</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% students.forEach(s => { %>
+        <tr>
+          <td><strong><%= s.name %></strong></td>
+          <td class="due-tag"><%= s.roll_number %></td>
+          <td><%= s.class_section || '—' %></td>
+          <td><%= s.phone || '—' %></td>
+          <td><%= s.email || '—' %></td>
+          <td>
+            <div class="row-actions">
+              <a href="/students/<%= s.id %>/edit" class="btn btn-outline btn-sm">Edit</a>
+              <form method="POST" action="/students/<%= s.id %>?_method=DELETE" onsubmit="return confirm('Delete this student?');">
+                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>

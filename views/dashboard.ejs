@@ -1,0 +1,45 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Overview</span>
+    <h1>Library Dashboard</h1>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <span class="label">Book Titles</span>
+    <div class="value"><%= bookStats.total_titles %></div>
+  </div>
+  <div class="stat-card accent">
+    <span class="label">Total Copies</span>
+    <div class="value"><%= bookStats.total_copies %></div>
+  </div>
+  <div class="stat-card">
+    <span class="label">Available Now</span>
+    <div class="value"><%= bookStats.available_copies %></div>
+  </div>
+  <div class="stat-card <%= borrowStats.overdue_count > 0 ? 'warn' : '' %>">
+    <span class="label">Overdue</span>
+    <div class="value"><%= borrowStats.overdue_count || 0 %></div>
+  </div>
+  <div class="stat-card">
+    <span class="label">Registered Students</span>
+    <div class="value"><%= studentCount %></div>
+  </div>
+  <div class="stat-card">
+    <span class="label">Currently Borrowed</span>
+    <div class="value"><%= (borrowStats.currently_borrowed || 0) + (borrowStats.overdue_count || 0) %></div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <h2>Quick Actions</h2>
+</div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 8px;">
+  <a href="/borrow/issue" class="btn btn-brass">+ Issue a Book</a>
+  <a href="/books/new" class="btn btn-outline">+ Add Book</a>
+  <a href="/students/new" class="btn btn-outline">+ Add Student</a>
+  <a href="/borrow" class="btn btn-outline">View Active Borrows</a>
+</div>
+
+<footer class="note">CCPC LIBRARY · ACCESSION SYSTEM · RUNNING LOCALLY</footer>

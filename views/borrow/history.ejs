@@ -1,0 +1,55 @@
+<div class="page-header">
+  <div>
+    <span class="eyebrow">Circulation</span>
+    <h1>Borrow History</h1>
+  </div>
+</div>
+
+<form class="search-bar" method="GET" action="/borrow/history">
+  <input type="text" name="q" value="<%= search %>" placeholder="Search by book title, student name or roll...">
+  <button class="btn btn-outline" type="submit">Search</button>
+  <% if (search) { %><a href="/borrow/history" class="btn btn-outline">Clear</a><% } %>
+</form>
+
+<% if (records.length === 0) { %>
+  <div class="empty-state">
+    <h3>No records found</h3>
+  </div>
+<% } else { %>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Student</th>
+        <th>Borrowed</th>
+        <th>Due</th>
+        <th>Returned</th>
+        <th>Status</th>
+        <th>Fine</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% records.forEach(r => { %>
+        <tr>
+          <td><strong><%= r.book_title %></strong></td>
+          <td><%= r.student_name %> <span class="hint">(<%= r.roll_number %>)</span></td>
+          <td class="due-tag"><%= r.borrow_date %></td>
+          <td class="due-tag"><%= r.due_date %></td>
+          <td class="due-tag"><%= r.return_date || '—' %></td>
+          <td>
+            <% if (r.status === 'returned') { %>
+              <span class="badge badge-muted">Returned</span>
+            <% } else if (r.status === 'overdue') { %>
+              <span class="badge badge-danger">Overdue</span>
+            <% } else { %>
+              <span class="badge badge-ok">On Loan</span>
+            <% } %>
+          </td>
+          <td><%= r.fine_amount > 0 ? '৳' + r.fine_amount : '—' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>
