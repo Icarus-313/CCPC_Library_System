@@ -3,25 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CCPC Library</title>
+  <title>CCPC Library Management System</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="auth-body">
   <div class="auth-shell">
     <div class="auth-card landing-card">
       <div class="brand landing-brand">
-        <div class="brand-mark"></div>
+        <div class="brand-mark" aria-hidden="true"></div>
         <div class="brand-text">
           <strong>CCPC Library</strong>
-          <span>Inventory &amp; Circulation System</span>
+          <span>Digital Library Management System</span>
         </div>
       </div>
-      <p class="hint" style="margin-bottom:28px;">Chattogram Cantonment Public College</p>
+      <p class="hint">Serving Chattogram Cantonment Public College</p>
+
+      <h2 class="landing-heading">Welcome</h2>
+      <p class="landing-description">Please select your portal to continue.</p>
       <div class="landing-options">
-        <a href="/auth/admin/login" class="btn btn-primary landing-btn">Admin Login</a>
-        <a href="/auth/student/login" class="btn btn-brass landing-btn">Student Login</a>
-        <a href="/auth/student/signup" class="btn btn-outline landing-btn">Student Sign Up</a>
+        <a href="/auth/admin/login" class="btn btn-primary landing-btn">Administrator Portal</a>
+        <a href="/auth/student/login" class="btn btn-brass landing-btn">Student Portal</a>
+        <a href="/auth/student/signup" class="btn btn-outline landing-btn">Create Student Account</a>
       </div>
+      <footer class="landing-footer">
+        &copy; 2026 CCPC Library. All rights reserved.
+      </footer>
     </div>
   </div>
 </body>

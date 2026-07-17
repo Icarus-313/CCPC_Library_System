@@ -80,7 +80,7 @@ a { color: var(--forest); text-decoration: none; }
 }
 
 .brand-text { display: flex; flex-direction: column; line-height: 1.25; }
-.brand-text strong { font-family: 'Source Serif 4', serif; font-size: 15px; color:#FAF9F3; }
+.brand-text strong { font-family: 'Source Serif 4', serif; font-size: 15px; color: #FAF9F3; }
 .brand-text span { font-size: 11px; color: #A8AC9C; text-transform: uppercase; letter-spacing: 0.08em; }
 
 .sidebar nav { display: flex; flex-direction: column; padding: 0 12px; gap: 2px; }
@@ -139,9 +139,10 @@ a { color: var(--forest); text-decoration: none; }
   cursor: pointer;
   font-family: 'Inter', sans-serif;
   transition: opacity 0.15s ease;
+  min-height: 48px;
 }
 .btn:hover { opacity: 0.88; }
-.btn-primary { background: var(--forest); color: #FAF9F3; }
+.btn-primary { background: linear-gradient(to bottom, var(--forest), var(--forest-dark)); color: #FAF9F3; }
 .btn-brass { background: var(--brass); color: #FAF9F3; }
 .btn-outline { background: transparent; border-color: var(--line); color: var(--forest-dark); }
 .btn-danger { background: var(--danger-bg); color: var(--danger); border-color: transparent; }
@@ -267,11 +268,12 @@ tbody tr:hover { background: #F6F4EA; }
   width: 100%;
   padding: 9px 11px;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: 10px;
   font-family: 'Inter', sans-serif;
   font-size: 13.5px;
   background: #FFFFFE;
   color: var(--ink);
+  min-height: 48px;
 }
 .field input:focus, .field select:focus {
   outline: 2px solid var(--brass-light);
@@ -380,10 +382,28 @@ footer.note {
 }
 
 .auth-card {
-  background: #ffffff;
-border: none;
-border-radius: 12px;
-box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  width: 100%;
+  max-width: 430px;
+  padding: 40px;
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 20px;
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.auth-card h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.auth-card p {
+  text-align: center;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 28px;
 }
 
 .auth-card h1 { margin-bottom: 20px; }
@@ -397,9 +417,14 @@ box-shadow: 0 8px 32px rgba(0,0,0,0.25);
   margin-bottom: 6px;
 }
 
+.auth-card:hover {
+  transform: translateY(-2px);
+  transition: transform .2s ease;
+}
+
 .auth-links { margin-top: 18px; text-align: center; }
 
-.landing-card { max-width: 420px; text-align: center; }
+.landing-card { max-width: 380px; text-align: center; }
 .landing-brand {
   justify-content: center;
   border: none;
@@ -408,3 +433,10 @@ box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 .landing-options { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
 .landing-btn { width: 100%; justify-content: center; }
+
+@media (max-width: 576px) {
+  .auth-card {
+    max-width: 95%;
+    padding: 28px 22px;
+  }
+}
