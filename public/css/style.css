@@ -80,7 +80,7 @@ a { color: var(--forest); text-decoration: none; }
 }
 
 .brand-text { display: flex; flex-direction: column; line-height: 1.25; }
-.brand-text strong { font-family: 'Source Serif 4', serif; font-size: 15px; color: #FAF9F3; }
+.brand-text strong { font-family: 'Source Serif 4', serif; font-size: 15px; color: #d4af37; }
 .brand-text span { font-size: 11px; color: #A8AC9C; text-transform: uppercase; letter-spacing: 0.08em; }
 
 .sidebar nav { display: flex; flex-direction: column; padding: 0 12px; gap: 2px; }
