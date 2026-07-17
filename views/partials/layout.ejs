@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %> | CCPC Library</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
   <div class="app-shell">
@@ -17,23 +18,41 @@
         </div>
       </div>
       <nav>
-        <a href="/" class="<%= active === 'dashboard' ? 'active' : '' %>">Dashboard</a>
-        <a href="/books" class="<%= active === 'books' ? 'active' : '' %>">Books</a>
-        <a href="/students" class="<%= active === 'students' ? 'active' : '' %>">Students</a>
-        <a href="/borrow" class="<%= active === 'borrow' ? 'active' : '' %>">Active Borrows</a>
+        <a href="/" class="<%= active === 'dashboard' ? 'active' : '' %>"><i class="fa-solid fa-house nav-icon"></i> Dashboard</a>
+        <a href="/books" class="<%= active === 'books' ? 'active' : '' %>"><i class="fa-solid fa-book nav-icon"></i> Books</a>
+        <a href="/students" class="<%= active === 'students' ? 'active' : '' %>"><i class="fa-solid fa-user-graduate nav-icon"></i> Students</a>
+        <a href="/borrow" class="<%= active === 'borrow' ? 'active' : '' %>"><i class="fa-solid fa-arrow-right-arrow-left nav-icon"></i> Active Borrows</a>
         <a href="/borrow/requests" class="<%= active === 'requests' ? 'active' : '' %>">
-          Requests<% if (typeof pendingRequestCount !== 'undefined' && pendingRequestCount > 0) { %> <span class="nav-badge"><%= pendingRequestCount %></span><% } %>
+          <i class="fa-solid fa-clipboard-list nav-icon"></i> Requests<% if (typeof pendingRequestCount !== 'undefined' && pendingRequestCount > 0) { %> <span class="nav-badge"><%= pendingRequestCount %></span><% } %>
         </a>
-        <a href="/borrow/history" class="<%= active === 'history' ? 'active' : '' %>">Borrow History</a>
+        <a href="/borrow/history" class="<%= active === 'history' ? 'active' : '' %>"><i class="fa-solid fa-clock-rotate-left nav-icon"></i> Borrow History</a>
       </nav>
       <div class="sidebar-footer">
         <div class="signed-in-as">Signed in as<br><strong><%= adminUsername %></strong></div>
         <form method="POST" action="/auth/admin/logout">
-          <button class="btn btn-outline btn-sm" type="submit" style="width:100%;">Log Out</button>
+          <button class="btn btn-outline btn-sm" type="submit" style="width:100%;"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
         </form>
       </div>
     </aside>
     <main class="content">
+      <header class="topbar">
+        <div>
+          <span class="topbar-label">CCPC Library</span>
+          <h2>Welcome back</h2>
+        </div>
+        <div class="topbar-actions">
+          <div class="topbar-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search books, students...">
+          </div>
+          <button class="icon-btn" type="button" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i>
+          </button>
+          <div class="user-chip">
+            <i class="fa-solid fa-user"></i> <span><%= adminUsername %></span>
+          </div>
+        </div>
+      </header>
       <%- body %>
     </main>
   </div>
