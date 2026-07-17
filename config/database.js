@@ -1,7 +1,15 @@
+const fs = require('fs');
 const Database = require('better-sqlite3');
 const path = require('path');
 
-const db = new Database(path.join(__dirname, '..', 'db', 'library.db'));
+const dbDir = path.join(__dirname, '..', 'db');
+
+// Create the db folder if it doesn't exist
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
+
+const db = new Database(path.join(dbDir, 'library.db'));
 
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
