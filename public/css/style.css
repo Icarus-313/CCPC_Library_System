@@ -280,7 +280,7 @@ tbody tr:hover { background: #F6F4EA; }
   border-radius: 10px;
   font-family: 'Inter', sans-serif;
   font-size: 13.5px;
-  background: #FFFFFE;
+  background: rgba(255,255,255,0.96);
   color: var(--ink);
   min-height: 48px;
 }
@@ -370,6 +370,18 @@ footer.note {
   font-family: 'JetBrains Mono', monospace;
 }
 
+.sidebar-footer .btn-outline {
+  color: #FAF9F3;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-footer .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--brass-light);
+  color: var(--brass-light);
+}
+
 /* ---------- Auth pages (login / signup / landing) ---------- */
 .auth-body {
   margin: 0;
@@ -414,6 +426,21 @@ footer.note {
   text-align: center;
   color: rgba(255,255,255,0.8);
   margin-bottom: 28px;
+}
+
+.auth-card label {
+  color: rgba(255,255,255,0.92);
+}
+
+.auth-card h1,
+.auth-card h2,
+.auth-card h3,
+.auth-card h4 {
+  color: #ffffff;
+}
+
+.auth-card .hint {
+  color: rgba(255,255,255,0.72);
 }
 
 .auth-card .eyebrow {
@@ -509,6 +536,14 @@ footer.note {
   text-align: center;
   color: rgba(255,255,255,0.65);
   font-size: 12px;
+}
+
+.auth-card a {
+  color: var(--brass-light);
+}
+
+.auth-card a:hover {
+  color: #f2c46d;
 }
 
 @media (max-width: 576px) {
