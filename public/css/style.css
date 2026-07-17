@@ -435,8 +435,6 @@ footer.note {
 
 .landing-card {
   max-width: 460px;
-  max-height: 90vh;
-  overflow-y: auto;
   text-align: center;
 }
 .landing-brand {
@@ -488,6 +486,17 @@ footer.note {
   border-radius: 12px;
   font-size: 15px;
   transition: all .25s ease;
+}
+
+.landing-options .landing-btn:last-child {
+  background: var(--brass-light);
+  color: var(--forest-dark);
+  border: 1px solid var(--brass-light);
+}
+
+.landing-options .landing-btn:last-child:hover {
+  background: #d9ab5c;
+  color: var(--forest-dark);
 }
 
 .landing-btn:hover {
