@@ -1,4 +1,4 @@
-# CCPC Library — Inventory & Circulation System
+# CCPC Library : Inventory & Circulation System
 
 A full-stack library management system for Chattogram Cantonment Public College,
 built with **Node.js, Express, EJS, and SQLite** (MVC architecture).
@@ -109,7 +109,7 @@ db/library.db                 SQLite database (auto-created)
 ## Notes
 
 - Loan period defaults to 14 days; configurable per direct issue
-- Late fines: ৳5/day, calculated automatically at return
+- Late fines: ৳#/day, calculated automatically at return
 - Duplicate loan prevention: a student can't borrow or request the same book twice while an active loan is open
 - Session lasts 24 hours
 - The SQLite database file lives at `db/library.db` — delete it to reset everything
